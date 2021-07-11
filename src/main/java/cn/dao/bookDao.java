@@ -15,5 +15,10 @@ public interface bookDao {
    public List<book> AllBook();
    @Select("select * from book where id = #{id}")
    public book findbookID(int id);
-//   public void  updatebook ( book bookname);
+   @Select("update book set name=#{name},author=#{author},publishes=#{publishes}where id = #{id}")
+   public void  updatebook (@Param("name")String name,@Param("author")String author,@Param("publishes")String publishes,@Param("id")int id);
+   @Select("insert into book (name,author,publishes)values(#{name},#{author},#{publishes})")
+   public void insert(@Param("name")String name,@Param("author")String author,@Param("publishes")String publishes);
+   @Select("delete from book where id = #{id}")
+   public void delete(int id);
 }

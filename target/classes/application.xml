@@ -39,4 +39,22 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="cn.dao"></property>
     </bean>
+
+<!--    配置spring框架声明式事务管理，如果没有则会没法进行增删改操作-->
+<!--    配置事务管理器-->
+  <bean  id="TransactionManager"  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource"></property>
+  </bean>
+<!--    配置事务通知-->
+ <tx:advice id="txAdvice" transaction-manager="TransactionManager">
+     <tx:attributes>
+         <tx:method name="find*" read-only="true"/>
+         <tx:method name="*" isolation="DEFAULT"></tx:method>
+     </tx:attributes>
+ </tx:advice>
+<!--   配置aop增强-->
+ <aop:config>
+     <aop:advisor advice-ref="txAdvice" pointcut="execution(* cn.sevice.impl.*.*(..))"></aop:advisor>
+ </aop:config>
+
 </beans>

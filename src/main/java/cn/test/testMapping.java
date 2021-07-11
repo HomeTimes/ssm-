@@ -14,6 +14,10 @@ import java.io.InputStream;
 public class testMapping {
     @Test
   public void run() throws Exception {
+         book book=new book();;
+         book.setAuthor("卢比");
+         book.setName("艾迪");
+         book.setPublishes("而已");
 //       加载配置文件
         InputStream in = Resources.getResourceAsStream("SqlMaperConfig.xml");
 //        创建SqlSessionFactory对象
@@ -23,11 +27,15 @@ public class testMapping {
 //        获取接口的代理对象
         bookDao mapper = sqlSession.getMapper(bookDao.class);
 //        调用方法
-        book bookid = mapper.findID("111",222);
+//        book bookid = mapper.findID("111",222);
 //        关闭资源
+//        mapper.updatebook(book.getName(),book.getAuthor(),book.getPublishes(),book.getId());
+//          mapper.insert(book.getName(),book.getAuthor(),book.getPublishes());
+           mapper.delete(10);
         sqlSession.close();
+
         in.close();
-        System.out.println(bookid);
+//        System.out.println(bookid);
 //        注意：增删改，要提交事务 sqlSession.commit();
 
     }

@@ -33,8 +33,17 @@ public class controller {
     public book findbookID(int id) {
         return bookSdao.findbookID(id);
     }
-//    @RequestMapping("/finden")
-//    public  void finden(){
-//        bookSdao.test();
-//    }
+
+     @PostMapping("/updatebook")
+     public  void updatebook(@RequestBody book book){
+               bookSdao.updatebook(book);
+     }
+     @PostMapping("/insert")
+     public  void  insert(@RequestBody book book){
+          bookSdao.insert(book);
+     }
+         @GetMapping("/delete")
+        public  void delete(@RequestParam("id")int id){
+                 bookSdao.delete(id);
+        }
 }

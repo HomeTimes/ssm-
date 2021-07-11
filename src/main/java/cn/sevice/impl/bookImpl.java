@@ -30,11 +30,9 @@ public class bookImpl implements bookSdao {
         return bookDao.findbookID(id);
     }
 
-    public void updatebook(book bookname) {
-//        bookDao.updatebook(bookname);
-        System.out.println("111");
+    public void updatebook(book book) {
+        bookDao.updatebook(book.getName(),book.getAuthor(),book.getPublishes(),book.getId());
     }
-
     public void updatebook1book2(int id1, int id2, int count) {
 //            book  book1 = this.findID(id1);
 //            book  book2 = this.findID(id2);
@@ -43,6 +41,14 @@ public class bookImpl implements bookSdao {
 //            this.updatebook(book1);
 ////            int i=10 / 0;
 //            this.updatebook(book2);
+    }
+
+    public void insert(book book) {
+        bookDao.insert(book.getName(),book.getAuthor(),book.getPublishes());
+    }
+
+    public void delete(int id) {
+        bookDao.delete(id);
     }
 //    public void test() {
 //        System.out.println("ssssssss");
